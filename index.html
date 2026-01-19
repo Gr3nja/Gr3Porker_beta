@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Porker_Gr3</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <div class="table fade-in" role="application" aria-label="5カードポーカー">
+            <aside class="message-panel" id="messagePanel" aria-label="チャットパネル"></aside>
+
+            <div>
+                <div class="header">
+                    <div class="brand">5カードポーカー — Gr3</div>
+                    <div class="info" id="tableInfo">テーブルを選択してください</div>
+                    <div class="controls">
+                        <button id="storeBtn" class="btn">ストア</button>
+                        <button id="changeTableBtn" class="btn" disabled>テーブル変更</button>
+                        <button id="newRound" class="btn" disabled>新しいラウンド</button>
+                    </div>
+                </div>
+                <div class="player-area" id="gameArea">
+                    <div class="board-row" id="dealerRow" aria-live="polite"></div>
+                    <div class="board-row" id="playerRow" aria-live="polite"></div>
+                    <div class="center">
+                        <div id="result" class="result empty">テーブルを選んでからディールしてください</div>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; margin-top:6px;">
+                        <div class="badge" id="handLabel">-</div>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; margin-top:6px;">
+                        <div class="info small" id="turnLabel">ターン: -</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar" aria-label="サイドバー">
+                <div>
+                    <div style="display:flex; gap:8px; align-items:center; justify-content:space-between">
+                        <div><strong>残高</strong></div>
+                        <div class="badge" id="balance">1000</div>
+                    </div>
+                    <div class="bet-row" style="margin-top:10px">
+                        <div style="width:100%">
+                            <label class="small">ベット</label>
+                            <div class="bet-input">
+                                <input id="betAmount" class="input" type="number" min="1" step="1" value="50"
+                                    disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="display:flex; gap:8px; margin-top:8px">
+                        <button id="dealBtn" class="btn primary" disabled>ディール</button>
+                        <button id="drawBtn" class="btn" disabled>ドロー</button>
+                        <button id="surrenderBtn" class="btn" disabled>降伏</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;margin-bottom:8px">
+                        <strong>プレイ履歴</strong><span class="small" id="stats">勝0 敗0 引0</span>
+                    </div>
+                    <div class="hands-list" id="history"></div>
+                </div>
+
+                <div class="rules">
+                    <strong>ルール（5ターン 5カードドロー）</strong>
+                    <ul style="margin:6px 0 0 18px; padding:0">
+                        <li>ディールで5枚配られます</li>
+                        <li>各ターンで保持したいカードをクリックして「ドロー」</li>
+                        <li>5ターン終了後にCPUとショーダウン</li>
+                    </ul>
+                </div>
+
+                <div id="themeArea" style="margin-top:6px; display:none">
+                    <div><strong>テーマ（購入済みのみ）</strong></div>
+                    <div class="theme-row" id="themes"></div>
+                </div>
+
+                <div id="cardSkinArea" style="margin-top:6px; display:none">
+                    <div><strong>カードスキン（購入済みのみ）</strong></div>
+                    <div class="theme-row" id="cardSkins"></div>
+                </div>
+
+                <div class="footer">
+                    <div class="small">CPUはテーブルに応じて強さが変化します</div>
+                    <div class="small">©Gr3nja</div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Toast notification container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Table selection overlay -->
+    <div id="tableOverlay" class="table-select-overlay" aria-hidden="false">
+        <div class="table-card">
+            <h2 style="margin:0">テーブルを選択</h2>
+            <div class="info small" style="margin-top:6px">テーブルを選ぶとそのテーブルルール（ミニマム・CPU強度）が適用されます</div>
+            <div class="table-grid" id="tableGrid"></div>
+            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
+                <button id="tableConfirm" class="btn primary" disabled>決定して開始</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Store overlay -->
+    <div id="storeOverlay" class="store-overlay" style="display:none">
+        <div class="store-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="margin:0">ストア</h2>
+                <div><button id="closeStore" class="btn">閉じる</button></div>
+            </div>
+            <div class="info small" style="margin-top:6px">背景テーマ、カードスキン、グラデーションを購入できます</div>
+            <div class="store-grid" id="storeGrid"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>
